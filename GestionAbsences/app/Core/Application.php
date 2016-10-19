@@ -4,65 +4,65 @@ namespace GestionAbsences\Core;
 
 /**
  * Classe permettant d'effectuer le routage vers le contrÃ´leur de la page
- * dÃ©sirÃ©e via l'URL et d'appeler la mÃ©thode avec les arguments contenues dans
+ * désirée via l'URL et d'appeler la méthode avec les arguments contenues dans
  * l'URL pour afficher la page.
  * @author Paul PAGES
  */
 final class Application {
 
-    /** @var Controleur le contrÃ´leur de la page demandÃ©e. */
+    /** @var Controleur le contrÃ´leur de la page demandée. */
     private $controleur;
 
-    /** @var string la mÃ©thode du contrÃ´leur Ã  appeler. */
+    /** @var string la méthode du contrÃ´leur Ã  appeler. */
     private $methode;
 
-    /** @var array un tableau contenant les arguments de la mÃ©thode. */
+    /** @var array un tableau contenant les arguments de la méthode. */
     private $args;
 
     /**
-     * Donne le contrÃ´le de la page au contrÃ´leur passÃ© en argument dans l'URL
-     * et exÃ©cute la mÃ©thode du contrÃ´leur avec les arguments passÃ©s en
-     * arguments dans l'URL.<br> Si aucun contrÃ´leur ne correspond au contrÃ´leur
-     * passÃ© en argument, affiche une page d'erreur.
+     * Donne le contrôle de la page au contrôleur passé en argument dans l'URL
+     * et exécute la méthode du contrôleur avec les arguments passés en
+     * arguments dans l'URL.<br> Si aucun contrôleur ne correspond au contrôleur
+     * passé en argument, affiche une page d'erreur.
      */
     public function __construct() {
         
-        // Par dÃ©faut
+        // Par défaut
         $this->methode = 'index';
         $this->params = array();
         
-        // DÃ©coupe l'URL
+        // Découpe l'URL
         $url = $this->decouperURL();
         
-        // Le nom du contrÃ´leur.
+        // Le nom du contrôleur.
         $controleur = isset($url) ? $url[0] : 'Accueil';
         
-        // VÃ©rifie si le contrÃ´leur existe
+        // Vérifie si le contrôleur existe
         if (file_exists(CONTROLEURS . $controleur . '.php')) {
             
             /*
-             * Si oui on passe la 1ere lettre du contrÃ´leur de l'URL en
+             * Si oui on passe la 1ere lettre du contrôleur de l'URL en
              * majuscule pour correspondre au nom du contrÃ´leur dans
              * l'application.
              */
             $url[0] = ucfirst($controleur);
             
-            // Affectation du nom du contrÃ´leur
+            // Affectation du nom du contrôleur
             $this->controleur = $controleur;
             
-            // EnlÃ¨ve le nom du contrÃ´leur du tableau de l'URL
+            // EnlÃ¨ve le nom du contrôleur du tableau de l'URL
             unset($url[0]);
             
-            // Importe le contrÃ´leur
+            // Importe le contrôleur
             require_once CONTROLEURS . $controleur . '.php';
             
             // Ajout du namespace
             $controleur =  SITE_ROOT . '\Controleur\\' . $controleur;
             
-            // CrÃ©Ã© le contrÃ´leur
+            // Créé le contrôleur
             $this->controleur = new $controleur();
             
-            // VÃ©rifie que le contrÃ´leur a appeler est bien un contrÃ´leur.
+            // Vérifie que le contrôleur a appeler est bien un contrÃ´leur.
             if (!($this->controleur instanceof Controleur)) {
                 //header('Location: /GeoVilles/erreur/erreur404/');
                 //TODO
@@ -70,33 +70,33 @@ final class Application {
             }
             
             /*
-             * Si il y a une mÃ©thode passÃ©e en argument dans l'URL et qu'elle
-             * existe dans le contrÃ´leur
+             * Si il y a une méthode passée en argument dans l'URL et qu'elle
+             * existe dans le contrôleur
              */
             if (isset($url[1]) && method_exists($this->controleur, $url[1])) {
                 
                 // On l'appelle
                 $this->methode = $url[1];
                 
-                // EnlÃ¨ve le nom de la mÃ©thode du tableau de l'URL
+                // EnlÃ¨ve le nom de la méthode du tableau de l'URL
                 unset($url[1]);
             }
             
-            // CrÃ©Ã© un objet reprÃ©sentant la mÃ©thode.
+            // Créé un objet représentant la méthode.
             $methode = new \ReflectionMethod($this->controleur, $this->methode);
             
-            // VÃ©rifie que la mÃ©thode est appelable.
+            // Vérifie que la méthode est appelable.
             if (!$methode->isPublic()) {
                // $this->erreur404();
                 //TODO
                 return;
             }
             
-            // Si il reste des arguments pour la mÃ©thode dans le tableau de
+            // Si il reste des arguments pour la méthode dans le tableau de
             // l'URL
             $this->params = $url ? array_values($url) : [];
             
-            // On appelle la mÃ©thode avec ses arguments
+            // On appelle la méthode avec ses arguments
             call_user_func_array(
                     [
                         $this->controleur, $this->methode
@@ -109,20 +109,20 @@ final class Application {
     }
 
     /**
-     * DÃ©coupe l'URL en plusieurs chaÃ®nes de caractÃ¨res par rapport au caractÃ¨re
+     * Découpe l'URL en plusieurs chaînes de caractàres par rapport au caractère
      * '/' et les placent dans un tableau.
-     * @return array le tableau contenant l'URL dÃ©coupÃ©e, ou null si aucune URL
-     *         est prÃ©sente.
+     * @return array le tableau contenant l'URL découpée, ou null si aucune URL
+     *         est présente.
      */
     private function decouperURL() {
         if (isset($_GET['url'])) {
             
-            // VÃ©rifie que l'URL est valide.
+            // Vérifie que l'URL est valide.
             $url = filter_var(rtrim($_GET['url']), FILTER_SANITIZE_URL);
             
             /*
-             * On crÃ©Ã© un tableau des Ã©lÃ©ments de l'URL en sÃ©parant chaque
-             * Ã©lÃ©ment du tableau en fonction du '/' dans l'URL.
+             * On créé un tableau des éléments de l'URL en séparant chaque
+             * élément du tableau en fonction du '/' dans l'URL.
              */
             return explode('/', $url);
         }

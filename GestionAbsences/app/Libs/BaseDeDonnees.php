@@ -2,13 +2,13 @@
     namespace GestionAbsences\Libs;
 
     /**
-     * Classe repr√©sentant la connexion √† la base de donn√©es.
+     * Classe reprÈsentant la connexion ‡ la base de donnÈes.
      * @author Paul PAGES
      */
     final class BaseDeDonnees {
 
         /**
-         * Les options pour toutes les requ√™tes √† la base de donn√©e.
+         * Les options pour toutes les requËtes ‡† la base de donnÈe.
          */
         public static $OPTIONS_DB = array(
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ,
@@ -16,8 +16,8 @@
         );
 
         /**
-         * @var BaseDeDonnees La seule instance de connexion √† la base
-         * de donn√©es (Pattern Singleton).
+         * @var BaseDeDonnees La seule instance de connexion ‡ la base
+         * de donnÈes (Pattern Singleton).
          */
         private static $instance;
 
@@ -25,7 +25,7 @@
         private $bd;
 
         /**
-         * Cr√©√© la connexion √† la base de donn√©es.
+         * CrÈÈ la connexion ‡ la base de donn√©es.
          */
         private function __construct() {
             // Importe le fichier de configuration.

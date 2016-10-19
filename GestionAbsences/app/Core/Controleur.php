@@ -3,7 +3,7 @@
 namespace GestionAbsences\Core;
 
 /**
- * Classe du contrÃ´leur par dÃ©faut, tous les contrÃ´leurs doivent hÃ©riter de
+ * Classe du contrôleur par défaut, tous les contrôleurs doivent hériter de
  * cette classe.
  * @author Paul PAGES
  */
@@ -13,17 +13,22 @@ abstract class Controleur {
     private $titre;
 
     /**
-     * CrÃ©Ã© un nouveau contrÃ´leur.
+     * Crée un nouveau contrôleur.
      */
     public function __construct() {
         session_start();
     }
 
     /**
-     * MÃ©thode lancÃ©e par dÃ©faut sur un contrÃ´leur.
+     * Méthode lancée par défaut sur un contôleur.
      */
     public abstract function index();
-
+    
+    /**
+     * Effectue un rendu de la vue
+     * @param $view chemin de la vue
+     */
+    public abstract function render($view);
     /**
      *
      * @return string le titre de la page.
@@ -39,4 +44,5 @@ abstract class Controleur {
     public function setTitre($titre) {
         $this->titre .= ' - ' . $titre;
     }
+    
 }
