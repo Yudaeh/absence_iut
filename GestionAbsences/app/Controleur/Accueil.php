@@ -4,7 +4,7 @@
     namespace GestionAbsences\Controleur;
 
 
-    use projet\src\Core\Controleur;
+    use GestionAbsences\Core\Controleur;
 
     class Accueil extends Controleur {
 

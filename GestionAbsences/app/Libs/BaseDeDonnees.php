@@ -1,5 +1,5 @@
 <?php
-    namespace projet\src\Libs;
+    namespace GestionAbsences\Libs;
 
     /**
      * Classe représentant la connexion à la base de données.

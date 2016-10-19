@@ -1,6 +1,6 @@
 <?php
 
-namespace projet\src\Core;
+namespace GestionAbsences\Core;
 
 /**
  * Classe permettant d'effectuer le routage vers le contrôleur de la page

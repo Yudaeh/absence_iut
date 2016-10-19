@@ -1,6 +1,6 @@
 <?php
 
-namespace projet\src\Core;
+namespace GestionAbsences\Core;
 
 /**
  * Classe du contrôleur par défaut, tous les contrôleurs doivent hériter de
