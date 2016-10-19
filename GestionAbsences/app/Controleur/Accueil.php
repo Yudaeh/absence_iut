@@ -7,13 +7,13 @@
     use GestionAbsences\Core\Controleur;
 
     class Accueil extends Controleur {
-
+    	
         /**
-         * M√©thode lanc√©e par d√©faut sur un contr√¥leur.
+         * MÈthode lanc√©e par dÈfaut sur un contrÙleur.
          */
         public
         function index() {
-            echo 'Accueil';
+            
         }
 
 
