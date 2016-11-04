@@ -1,4 +1,65 @@
+/* HEADER CSS */
+
 .titreentete {
-	margin-top: 5%;
-	background-image: url(../../public/media/picture/rentree-iut-rodez.jpg);
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.menu-navigation {
+	/* TODO menu qui reste toujours en haut (lors du scroll)*/
+}
+
+.accueil-style {
+	font-weight: bold;
+}
+
+body {
+	/* TODO Changer la police */
+}
+
+
+/* FORM CONNEXION CSS */
+
+.log-in-form {
+  border: 1px solid #cacaca;
+  border-radius: 3px; 
+  margin-top: 5%;
+}
+
+.head-form {
+	margin-top: 2%;
+}
+
+/* FOOTER CSS */
+
+.footer {
+  background-color: #292c2f;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 4rem; 
+  margin-bottom: 0px;
+}
+
+.footer p.copywrite {
+  color: #8f9296;
+  font-size: 0.875rem;
+  margin: 0;
+}
+       
+.footer .links a {
+  list-style: none;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 3rem 0 2rem;
+  margin: 0;
+}
+
+.footer .links a::after {
+  content: "•";
+  padding: 0 0.4rem 0 0.8rem; 
+}
+
+.footer .links a:last-child::after {
+  content: "";
+  padding: 0 0.4rem 0 0.8rem; 
 }
