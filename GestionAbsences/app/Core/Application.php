@@ -6,7 +6,7 @@ namespace GestionAbsences\Core;
  * Classe permettant d'effectuer le routage vers le contrÃ´leur de la page
  * désirée via l'URL et d'appeler la méthode avec les arguments contenues dans
  * l'URL pour afficher la page.
- * @author Paul PAGES
+ * @author Maxime Brugel
  */
 final class Application {
 

@@ -1,6 +1,4 @@
 <?php
-
-
     namespace GestionAbsences\Controleur;
     	
     use GestionAbsences\Core\Controleur;
@@ -11,17 +9,8 @@
          * Méthode lancée par défaut sur un contrôleur.
          */
         public function index() {
-            $this->render('accueil.index');
+            require (VUES . 'accueil/index.php');
         }
         
-        /**
-         * Effectue un rendu de la vue
-         * @param $view chemin de la vue
-         */
-        public function render($view) {
-        	ob_start();
-        	require($view = VUES . str_replace('.','/',$view) . '.php');
-        }
-
-
     }
+?>

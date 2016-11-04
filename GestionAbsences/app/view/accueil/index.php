@@ -1,4 +1,4 @@
 <?php
-require(HEADER);
-require(FOOTER);
+	require(HEADER); 
+	require(FOOTER);
 ?>

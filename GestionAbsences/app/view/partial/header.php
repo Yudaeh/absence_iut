@@ -12,7 +12,7 @@
 <body>
 
 	<div class="row">
-		<div class="large-6 large-centered columns">
+		<div class="large-6 large-centered columns titreentete">
 			<h1><center>Gestion Absences</center></h1>
 		</div>
 	</div>

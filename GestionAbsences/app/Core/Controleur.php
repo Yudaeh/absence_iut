@@ -5,7 +5,7 @@ namespace GestionAbsences\Core;
 /**
  * Classe du contrôleur par défaut, tous les contrôleurs doivent hériter de
  * cette classe.
- * @author Paul PAGES
+ * @author Maxime Brugel
  */
 abstract class Controleur {
 
@@ -24,11 +24,6 @@ abstract class Controleur {
      */
     public abstract function index();
     
-    /**
-     * Effectue un rendu de la vue
-     * @param $view chemin de la vue
-     */
-    public abstract function render($view);
     /**
      *
      * @return string le titre de la page.
