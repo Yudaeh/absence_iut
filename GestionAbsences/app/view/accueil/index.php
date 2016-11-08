@@ -1,4 +1,7 @@
 <?php
-	require(HEADER); 
+	require(HEADER);
+?>
+
+<?php 
 	require(FOOTER);
 ?>

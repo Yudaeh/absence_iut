@@ -11,7 +11,7 @@
 			<p class="links">
 				<a href="#">Accueil</a> <a href="#">Menu2</a> <a href="#">Contact</a>
 			</p>
-			<p class="copywrite">LPMMS © 2016</p>
+			<p class="copywrite">LPMMS Â© 2016</p>
 		</footer>
 	</div>
 </div>

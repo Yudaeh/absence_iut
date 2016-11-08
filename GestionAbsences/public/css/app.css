@@ -55,11 +55,17 @@ body {
 }
 
 .footer .links a::after {
-  content: "•";
+  content: "-";
   padding: 0 0.4rem 0 0.8rem; 
 }
 
 .footer .links a:last-child::after {
   content: "";
   padding: 0 0.4rem 0 0.8rem; 
+}
+
+/* PAGE ERREUR */
+.alert-logo {
+	font-size: 20rem;
+	color: red;
 }
