@@ -3,7 +3,7 @@
 namespace GestionAbsences\Core;
 
 /**
- * Classe du contrôleur par défaut, tous les contrôleurs doivent hériter de
+ * Classe du contrï¿½leur par dï¿½faut, tous les contrï¿½leurs doivent hï¿½riter de
  * cette classe.
  * @author Maxime Brugel
  */
@@ -13,14 +13,14 @@ abstract class Controleur {
     private $titre;
 
     /**
-     * Crée un nouveau contrôleur.
+     * Crï¿½e un nouveau contrï¿½leur.
      */
     public function __construct() {
         session_start();
     }
 
     /**
-     * Méthode lancée par défaut sur un contôleur.
+     * MÃ©thode lancÃ©e par dÃ©faut sur le constructeur
      */
     public abstract function index();
     

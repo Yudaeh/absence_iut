@@ -14,7 +14,7 @@
 				</label> <input id="show-password" type="checkbox"><label
 					for="show-password">Show password</label>
 				<p>
-					<a type="submit" class="button expanded lol">Connexion</a>
+					<a type="submit" class="button expanded">Connexion</a>
 				</p>
 			</div>
 		</form>

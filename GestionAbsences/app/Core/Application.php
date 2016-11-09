@@ -64,8 +64,8 @@ final class Application {
             
             // Vérifie que le contrôleur a appeler est bien un contrÃ´leur.
             if (!($this->controleur instanceof Controleur)) {
-                //header('Location: /GeoVilles/erreur/erreur404/');
-                //TODO
+                header('Location: /projects/absence_iut/GestionAbsences/Error');
+                
                 return;
             }
             
@@ -87,8 +87,8 @@ final class Application {
             
             // Vérifie que la méthode est appelable.
             if (!$methode->isPublic()) {
-               // $this->erreur404();
-                //TODO
+                // $this->error();
+                // TODO
                 return;
             }
             
@@ -103,8 +103,8 @@ final class Application {
                     ], $this->params);
         } else {
             // Si la page n'est pas connue
-            //header('Location: /GeoVilles/erreur/erreur404/');
-            //TODO
+            header('Location: /projects/absence_iut/GestionAbsences/Error');;
+            
         }
     }
 

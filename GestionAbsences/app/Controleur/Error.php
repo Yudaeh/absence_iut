@@ -6,7 +6,7 @@
     class Error extends Controleur {
     	
         /**
-         * M�thode lanc�e par d�faut sur un contr�leur.
+         * M�thode lan��e par d�faut sur un contr�leur.
          */
         public function index() {
             require (VUES . 'error/index.php');
