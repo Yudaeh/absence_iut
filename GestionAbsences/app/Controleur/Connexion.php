@@ -6,11 +6,29 @@
 	class Connexion extends Controleur {
 	 
 		/**
-	 	* Méthode lancée par défaut sur un contrôleur.
+	 	 * MÃ©thode lancÃ©e par dÃ©faut par le controleur
 		 */
 		public function index() {
 			require (VUES . 'connexion/index.php');
 		}
+		
+		/**
+		 * DÃ©connexion de la session
+		 */
+		public function deconnexion() {
+			unset($_SESSION);
+			session_destroy(); 
+		}
+		
+		public function seConnecter($user, $pwd) {
+			$_SESSION['login'] = $user;
+			$_SESSION['pwd'] = $pwd;
+		}
+		
+		public function estConnecte() {
+			return (!isset($_SESSION['login'])) || (empty($_SESSION['login']));
+		}
 
+		
 	}
 ?>

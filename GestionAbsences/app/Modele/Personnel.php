@@ -235,4 +235,20 @@ WHERE ID_P=:id_p", array(
             return "(".$this->getIDP().") :".$this->getNomP()." ".$this->getPrenomP().
                    " ". $this->getIdType()->getNomT();
         }
+        
+        
+        public function loginExiste($loginTest, $pwdTest) {
+        	$this->connexionBD();
+        	if (isset($this->ID_P)) {
+        		$info =
+        		$this->bd->selectParams("SELECT Login,Pwd FROM personnel WHERE Login=:LOGIN AND Pwd=:PWD",
+        				array(
+        						":LOGIN" => $loginTest,
+        						":PWD" => $pwdTest,
+        				));
+        		
+        		return !empty($info);
+            }
+        }	
+        
     }
