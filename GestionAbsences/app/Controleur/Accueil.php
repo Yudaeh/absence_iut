@@ -6,7 +6,7 @@
     class Accueil extends Controleur {
     	
         /**
-         * Méthode lancée par défaut sur un contrôleur.
+         * Mï¿½thode lancï¿½e par dï¿½faut sur un contrï¿½leur.
          */
         public function index() {
             require (VUES . 'accueil/index.php');

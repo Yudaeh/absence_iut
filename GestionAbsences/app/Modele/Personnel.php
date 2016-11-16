@@ -237,7 +237,7 @@ WHERE ID_P=:id_p", array(
         }
         
         
-        public function loginExiste($loginTest, $pwdTest) {
+        public static function loginExiste($loginTest, $pwdTest) {
         	$this->connexionBD();
         	if (isset($this->ID_P)) {
         		$info =

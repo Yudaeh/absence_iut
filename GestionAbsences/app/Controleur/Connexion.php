@@ -13,11 +13,31 @@
 		}
 		
 		/**
+		 * dont give a damn shit
+		 * 
+		 */
+		public function connection() {
+			$user = $_POST["nomUtilisateur"];
+			$pwd = $_POST["password"];
+			
+			if (loginExist($user,$pwd)) { 
+				seConnecter($user,$pwd); 
+				header('Location: /projects/absence_iut/GestionAbsences/Accueil'); 
+			} else {
+				
+			}
+		}
+		
+		
+		/**
 		 * Déconnexion de la session
 		 */
 		public function deconnexion() {
 			unset($_SESSION);
 			session_destroy(); 
+			
+			// Redirection
+			header('Location: /projects/absence_iut/GestionAbsences/Accueil');
 		}
 		
 		public function seConnecter($user, $pwd) {
@@ -28,7 +48,6 @@
 		public function estConnecte() {
 			return (!isset($_SESSION['login'])) || (empty($_SESSION['login']));
 		}
-
 		
 	}
 ?>

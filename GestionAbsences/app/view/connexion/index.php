@@ -3,9 +3,9 @@ require (HEADER);
 ?>
 
 <div class="row">
-	<div
-		class="medium-8 medium-centered large-6 large-centered columns log-in-form">
-		<form action="VerificationConnexion.php" method="post">
+
+	<div class="medium-8 medium-centered large-6 large-centered columns log-in-form">
+		<form method="post" action="Connexion/connection/<?php $_POST["nomUtilisateur"]?>/<?php $_POST["password"]?>">
 			<div class="row column">
 				<h4 class="text-center head-form">Connexion au compte</h4>
 				<label>Nom d'utilisateur <input type="text"
@@ -15,12 +15,12 @@ require (HEADER);
 				</label> 
 				</br>
 				<p>
-					<a type="submit" class="button expanded">Connexion</a>
+					<input type="submit" class="button expanded" value="Connexion"/>
 				</p>
-
 			</div>
 		</form>
 	</div>
+
 </div>
 
 <!-- FOOTER SCRIPT -->
