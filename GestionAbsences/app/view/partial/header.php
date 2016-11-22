@@ -34,10 +34,20 @@
 						<li><a href="Accueil" class="accueil-style">Accueil</a></li>
 						<?php 
 							# Si l'on est connecte
+							if (Connexion::estConnecteAdministrateur() || Connexion::estConnecteAdministratif()) { ?>
+								<li><a href="#">Administration</a>
+									<ul class="menu vertical">
+										<li><a href="#">Créer</a></li>
+										<li><a href="#">Importer</a></li>
+									</ul>
+								</li>	
+						<?php } ?>	
+						
+						<?php 
 							if (Connexion::estConnecte()) {
-								echo '<li><a href="#">Administration</a></li>';
+								echo '<li><a href="#">Absences</a></li>';
 							}
-						?>
+						?>				
 						
 					</ul>
 				</div>
@@ -52,14 +62,12 @@
 								<?php 
 									# Si l'on est connecte
 									if (Connexion::estConnecte()) {
-										echo '<li><a href="#">Mon profil</a></li>';
 										echo '<li><a href="Connexion/deconnexion">Deconnexion</a></li>';
 									} else {
 										echo '<li><a href="Connexion">Connexion</a></li>';
 									}
 								?>
-								
-								
+													
 							</ul></li>
 					</ul>
 				</div>

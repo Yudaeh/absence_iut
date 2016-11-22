@@ -264,12 +264,12 @@ WHERE ID_P=:id_p", array(
         public function getTypeFromLogin($loginTest) {
         	$this->connexionBD();
         	$info =
-        	$this->bd->selectParams("SELECT id_Type WHERE Login=:LOGIN",
+        	$this->bd->selectParams("SELECT id_Type FROM personnel WHERE Login=:LOGIN",
         			array(
         					":LOGIN" => $loginTest,
         			));
         	
-			return $info[0]->id-Type;
+			return $info[0]->id_Type;
         }
         
     }

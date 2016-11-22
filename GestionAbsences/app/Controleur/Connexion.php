@@ -8,7 +8,7 @@
 	class Connexion extends Controleur {
 	    
 		/**
-	 	 * Méthode lancée par défaut par le controleur
+	 	 * Mï¿½thode lancï¿½e par dï¿½faut par le controleur
 		 */
 		public function index() {
 			require (VUES . 'connexion/index.php');
@@ -28,10 +28,11 @@
 			 * de connexion) existe
 			 */
 			if ($personnel->loginExiste($user,$pwd)) {
-				$this->seConnecter($user,$pwd); 
+				$this->seConnecter($user,$pwd,$personnel->getTypeFromLogin($user)); 
 				header('Location: /projects/absence_iut/GestionAbsences/Accueil'); 
-			} else {
-				header('Location: /projects/absence_iut/GestionAbsences/ErrorConnexion');
+			} else {	
+				header('Location: /projects/absence_iut/GestionAbsences/Connexion');
+				$_SESSION['error'] = "1";
 			}
 		}
 		
@@ -52,9 +53,10 @@
 		 * @param $user Le nom de l'utilisateur de la session
 		 * @param $pwd Le mot de passe de la session
 		 */
-		public static function seConnecter($user, $pwd) {			
+		public static function seConnecter($user, $pwd, $type) {			
 			$_SESSION['login'] = $user;
 			$_SESSION['pwd'] = $pwd;
+			$_SESSION['type'] = $type;
 		}
 		
 		/**
@@ -65,28 +67,27 @@
 		}
 		
 		/**
-		 * Vérifie si l'utilisateur est connecté en tant que administrateur
-		 * @return true si connecté en administrateur
+		 * Vï¿½rifie si l'utilisateur est connectï¿½ en tant que administrateur
+		 * @return true si connectï¿½ en administrateur
 		 */
-		public static function estConnecteAdministrateur() {		
-				// TODO
-
+		public static function estConnecteAdministrateur() {
+			return ((isset($_SESSION['login'])) || (!empty($_SESSION['login']))) && $_SESSION['type'] == "1";
 		}
 		
 		/**
-		 * Vérifie si l'utilisateur est connecté en tant que administratif
-		 * @return true si connecté en administratif
+		 * Vï¿½rifie si l'utilisateur est connectï¿½ en tant que administratif
+		 * @return true si connectï¿½ en administratif
 		 */
 		public static function estConnecteAdministratif() {
-			return $this->estConnecte() && $_SESSION['type'] == 2; //TODO MIEUX
+			return ((isset($_SESSION['login'])) || (!empty($_SESSION['login']))) && $_SESSION['type'] == "2";
 		}
 		
 		/**
-		 * Vérifie si l'utilisateur est connecté en tant que professeur
-		 * @return true si connecté en professeur
+		 * Vï¿½rifie si l'utilisateur est connectï¿½ en tant que professeur
+		 * @return true si connectï¿½ en professeur
 		 */
 		public static function estConnecteProfesseur() {
-			return $this->estConnecte() && $_SESSION['type'] == 3; //TODO MIEUX
+			return ((isset($_SESSION['login'])) || (!empty($_SESSION['login']))) && $_SESSION['type'] == "3";
 		}
 	}
 ?>
