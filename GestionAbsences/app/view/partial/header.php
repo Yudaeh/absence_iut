@@ -1,3 +1,6 @@
+<?php 
+	use GestionAbsences\Controleur\Connexion;
+?>
 <!doctype html>
 <html class="no-js" lang="fr" dir="ltr">
 <head>
@@ -17,7 +20,7 @@
 	<div class="row">
 		<div class="large-6 large-centered columns titreentete">
 			<h1>
-				<center>SatellysReborn</center>
+				<center class="titre">Satellys Reborn</center>
 			</h1>
 		</div>
 	</div>
@@ -29,7 +32,13 @@
 				<div class="top-bar-left">
 					<ul class="dropdown menu" data-dropdown-menu>
 						<li><a href="Accueil" class="accueil-style">Accueil</a></li>
-						<li><a href="#">Administration</a></li>
+						<?php 
+							# Si l'on est connecte
+							if (Connexion::estConnecte()) {
+								echo '<li><a href="#">Administration</a></li>';
+							}
+						?>
+						
 					</ul>
 				</div>
 
@@ -40,9 +49,17 @@
 					<ul class="dropdown menu" data-dropdown-menu>
 						<li><a href="#"><i class="fi-torso-business"></i></a>
 							<ul class="menu vertical">
-								<li><a href="#">Mon profil</a></li>
-								<li><a href="Connexion">Connexion</a></li>
-								<li><a href="#">Deconnexion</a></li>
+								<?php 
+									# Si l'on est connecte
+									if (Connexion::estConnecte()) {
+										echo '<li><a href="#">Mon profil</a></li>';
+										echo '<li><a href="Connexion/deconnexion">Deconnexion</a></li>';
+									} else {
+										echo '<li><a href="Connexion">Connexion</a></li>';
+									}
+								?>
+								
+								
 							</ul></li>
 					</ul>
 				</div>

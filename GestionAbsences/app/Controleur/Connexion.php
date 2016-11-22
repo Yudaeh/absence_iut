@@ -8,7 +8,7 @@
 	class Connexion extends Controleur {
 	    
 		/**
-	 	 * MÃ©thode lancÃ©e par dÃ©faut par le controleur
+	 	 * Méthode lancée par défaut par le controleur
 		 */
 		public function index() {
 			require (VUES . 'connexion/index.php');
@@ -31,7 +31,7 @@
 				$this->seConnecter($user,$pwd); 
 				header('Location: /projects/absence_iut/GestionAbsences/Accueil'); 
 			} else {
-				# Si le login n'est pas valide
+				header('Location: /projects/absence_iut/GestionAbsences/ErrorConnexion');
 			}
 		}
 		
@@ -52,7 +52,7 @@
 		 * @param $user Le nom de l'utilisateur de la session
 		 * @param $pwd Le mot de passe de la session
 		 */
-		public static function seConnecter($user, $pwd) {
+		public static function seConnecter($user, $pwd) {			
 			$_SESSION['login'] = $user;
 			$_SESSION['pwd'] = $pwd;
 		}
@@ -61,8 +61,32 @@
 		 * @return true si quelqu'un est connectÃ©, false sinon
 		 */
 		public static function estConnecte() {
-			return (!isset($_SESSION['login'])) || (empty($_SESSION['login']));
+			return (isset($_SESSION['login'])) || (!empty($_SESSION['login']));
 		}
 		
+		/**
+		 * Vérifie si l'utilisateur est connecté en tant que administrateur
+		 * @return true si connecté en administrateur
+		 */
+		public static function estConnecteAdministrateur() {		
+				// TODO
+
+		}
+		
+		/**
+		 * Vérifie si l'utilisateur est connecté en tant que administratif
+		 * @return true si connecté en administratif
+		 */
+		public static function estConnecteAdministratif() {
+			return $this->estConnecte() && $_SESSION['type'] == 2; //TODO MIEUX
+		}
+		
+		/**
+		 * Vérifie si l'utilisateur est connecté en tant que professeur
+		 * @return true si connecté en professeur
+		 */
+		public static function estConnecteProfesseur() {
+			return $this->estConnecte() && $_SESSION['type'] == 3; //TODO MIEUX
+		}
 	}
 ?>

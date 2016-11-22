@@ -9,7 +9,7 @@
 	<div class="large-12 columns">
 		<footer class="footer">
 			<p class="links">
-				<a href="#">Accueil</a> <a href="#">Administration</a> <a href="#">Contact</a>
+				<a href="#">Accueil</a> <a href="#">Contact</a>
 			</p>
 			<p class="copywrite">LPMMS © 2016</p>
 		</footer>

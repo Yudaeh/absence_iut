@@ -245,7 +245,6 @@ WHERE ID_P=:id_p", array(
          */
         public function loginExiste($loginTest, $pwdTest) {
         	$this->connexionBD();
-        	if (isset($this->ID_P)) {
         		$info =
         		$this->bd->selectParams("SELECT Login,Pwd FROM personnel WHERE Login=:LOGIN AND Pwd=:PWD",
         				array(
@@ -253,8 +252,24 @@ WHERE ID_P=:id_p", array(
         						":PWD" => $pwdTest,
         				));
         
-        		return !empty($info);
-        	}
+        		return !empty($info);	
+        }
+        
+        /**
+         * Retourne le type (l'id) d'un utilisateur en fonction de 
+         * son login 
+         * @param unknown $loginTest
+         * @param unknown $pwdTest
+         */
+        public function getTypeFromLogin($loginTest) {
+        	$this->connexionBD();
+        	$info =
+        	$this->bd->selectParams("SELECT id_Type WHERE Login=:LOGIN",
+        			array(
+        					":LOGIN" => $loginTest,
+        			));
+        	
+			return $info[0]->id-Type;
         }
         
     }

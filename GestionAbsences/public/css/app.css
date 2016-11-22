@@ -5,12 +5,15 @@
 .titreentete {
 	margin-top: 2%;
 	margin-bottom: 2%;
-	font-family: 'Oswald', sans-serif;
 	text-transform: uppercase;
 }
 
 .menu-navigation {
 	/* TODO menu qui reste toujours en haut (lors du scroll)*/
+}
+
+.titre {
+	font-family: 'Oswald', sans-serif;
 }
 
 .accueil-style {
@@ -70,6 +73,11 @@ body {
 
 /* PAGE ERREUR */
 .alert-logo {
+	font-size: 20rem;
+	color: red;
+}
+
+.alert-lock-connexion {
 	font-size: 20rem;
 	color: red;
 }
