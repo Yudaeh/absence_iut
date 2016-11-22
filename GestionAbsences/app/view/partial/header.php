@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Absences IUT</title>
+<title>SatellysReborn</title>
 <link rel="stylesheet" href="public/css/foundation.css">
 <link rel="stylesheet" href="public/css/app.css">
 <link rel="stylesheet"
 	href="public/icon/foundation-icons/foundation-icons.css">
+<link rel="icon" href="../GestionAbsences/public/media/picture/SatellysReborn.ico">
 </head>
 
 <body>
@@ -16,7 +17,7 @@
 	<div class="row">
 		<div class="large-6 large-centered columns titreentete">
 			<h1>
-				<center>Gestion Absences</center>
+				<center>SatellysReborn</center>
 			</h1>
 		</div>
 	</div>
@@ -28,13 +29,13 @@
 				<div class="top-bar-left">
 					<ul class="dropdown menu" data-dropdown-menu>
 						<li><a href="Accueil" class="accueil-style">Accueil</a></li>
-						<li><a href="#">menu2</a></li>
+						<li><a href="#">Administration</a></li>
 					</ul>
 				</div>
 
-				<!-- Condition à réaliser si l'utilisateur est connecté (prof, admin) 
-				Si connecté => Mon profil et déconnexion
-				Si non connecté => connexion -->
+				<!-- Condition ï¿½ rï¿½aliser si l'utilisateur est connectÃ© (prof, admin) 
+				Si connectï¿½ => Mon profil et dÃ©connexion
+				Si non connectï¿½ => connexion -->
 				<div class="top-bar-right ">
 					<ul class="dropdown menu" data-dropdown-menu>
 						<li><a href="#"><i class="fi-torso-business"></i></a>

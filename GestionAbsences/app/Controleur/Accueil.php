@@ -6,10 +6,11 @@
     class Accueil extends Controleur {
     	
         /**
-         * M�thode lanc�e par d�faut sur un contr�leur.
+         * Méthode lancée par défaut par le contrôleur
          */
         public function index() {
             require (VUES . 'accueil/index.php');
+            $this->setTitre("Accueil");
         }
         
     }

@@ -1,8 +1,12 @@
 /* HEADER CSS */
 
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
 .titreentete {
 	margin-top: 2%;
 	margin-bottom: 2%;
+	font-family: 'Oswald', sans-serif;
+	text-transform: uppercase;
 }
 
 .menu-navigation {
