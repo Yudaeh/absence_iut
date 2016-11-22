@@ -236,8 +236,14 @@ WHERE ID_P=:id_p", array(
                    " ". $this->getIdType()->getNomT();
         }
         
-        
-        public static function loginExiste($loginTest, $pwdTest) {
+        /**
+         * Vérifie si un login avec son mot de passe existe
+         * @param $loginTest Le login que l'on test
+         * @param $pwdTest Le mot de passe que l'on test
+         * @return True si le login (avec mot de passe correstpondant)
+         * existe, false sinon
+         */
+        public function loginExiste($loginTest, $pwdTest) {
         	$this->connexionBD();
         	if (isset($this->ID_P)) {
         		$info =
@@ -246,9 +252,9 @@ WHERE ID_P=:id_p", array(
         						":LOGIN" => $loginTest,
         						":PWD" => $pwdTest,
         				));
-        		
+        
         		return !empty($info);
-            }
-        }	
+        	}
+        }
         
     }

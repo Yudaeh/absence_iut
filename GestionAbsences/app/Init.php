@@ -1,7 +1,7 @@
 <?php
     use GestionAbsences\Core\Application;
 
-    // Définitions des constantes pour l'ensemble des pages.
+    // Dï¿½finitions des constantes pour l'ensemble des pages.
     define('URL_PUBLIC_FOLDER', 'public');
     define('URL_PROTOCOL', 'http://');
     define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
@@ -15,7 +15,7 @@
     // Fichiers de configuration.
     define('CONFIG_BD', '../conf/bd.ini');
 
-    // Les différents modules du site.
+    // Les diffï¿½rents modules du site.
     define('CONTROLEURS', '../app/Controleur/');
     define('VUES', '../app/view/');
     define('COMMON', '../app/Vue/_Common/');
@@ -30,7 +30,7 @@
 
     /**
      * Fonction d'auto-chargment des classes requises.<br>
-     * Cette fonction est appelée directement par PHP avec l'instrcution "use".
+     * Cette fonction est appelï¿½e directement par PHP avec l'instrcution "use".
      * @param $classe string le chemin de la classe Ã  charger.
      */
     function __autoload($classe) {
