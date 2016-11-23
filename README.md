@@ -1,10 +1,13 @@
 # Gestion Absence
-Application web de gestion des absences d'un établissement
+Application web de gestion des absences d'un Ã©tablissement
 
 # Contributeurs
 * Maxime Brugel
 * Lucas Blanc
 * John Ricciardi
+
+# Documentation
+[Script SQL](http://textup.fr/181920LP)
 
 
 ![Logo IUT de Rodez](http://tiller.fr/images/logo/iut.png)
