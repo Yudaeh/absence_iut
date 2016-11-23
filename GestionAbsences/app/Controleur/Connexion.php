@@ -8,7 +8,7 @@
 	class Connexion extends Controleur {
 	    
 		/**
-	 	 * M�thode lanc�e par d�faut par le controleur
+	 	 * Méthode lançée par défaut sur un controleur
 		 */
 		public function index() {
 			require (VUES . 'connexion/index.php');
@@ -33,7 +33,7 @@
 			} else {	
 				header('Location: /projects/absence_iut/GestionAbsences/Connexion');
 				$_SESSION['error'] = "1";
-			}
+			} 
 		}
 		
 		

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<div class="conteneur"> <!-- D�but de la div conteneur (pour espace header/footer) -->
+<div class="conteneur"> <!-- Début de la div conteneur (pour espace header/footer) -->
 	<div class="row">
 		<div class="large-6 large-centered columns titreentete">
 			<h1>
@@ -35,17 +35,17 @@
 						<?php 
 							# Si l'on est connecte
 							if (Connexion::estConnecteAdministrateur() || Connexion::estConnecteAdministratif()) { ?>
-								<li><a href="#">Administration</a>
+								<li><a href="Administration">Administration</a>
 									<ul class="menu vertical">
-										<li><a href="#">Créer</a></li>
-										<li><a href="#">Importer</a></li>
+										<li><a href="Creation">Création</a></li>
+										<li><a href="Importation">Importation</a></li>
 									</ul>
 								</li>	
 						<?php } ?>	
 						
 						<?php 
 							if (Connexion::estConnecte()) {
-								echo '<li><a href="#">Absences</a></li>';
+								echo '<li><a href="Absence">Absences</a></li>';
 							}
 						?>				
 						

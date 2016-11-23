@@ -98,3 +98,8 @@ html, body {
 	height: 175px; 
 }
 
+/* Page administration */
+.image_option {
+	margin-top: 10%;
+	border-bottom-width: 5px;
+}

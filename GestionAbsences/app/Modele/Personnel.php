@@ -246,13 +246,13 @@ WHERE ID_P=:id_p", array(
         public function loginExiste($loginTest, $pwdTest) {
         	$this->connexionBD();
         		$info =
-        		$this->bd->selectParams("SELECT Login,Pwd FROM personnel WHERE Login=:LOGIN AND Pwd=:PWD",
+        		$this->bd->selectParams("SELECT Login, Pwd FROM personnel WHERE Pwd=:Password AND Login=:LOG",
         				array(
-        						":LOGIN" => $loginTest,
-        						":PWD" => $pwdTest,
+        						":LOG" => $loginTest,
+        						":Password" => $pwdTest
         				));
         
-        		return !empty($info);	
+        		return !empty($info) && $info[0]->Login == $loginTest && $info[0]->Pwd == $pwdTest;	
         }
         
         /**
