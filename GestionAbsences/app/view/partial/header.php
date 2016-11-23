@@ -16,7 +16,7 @@
 </head>
 
 <body>
-
+<div class="conteneur"> <!-- Début de la div conteneur (pour espace header/footer) -->
 	<div class="row">
 		<div class="large-6 large-centered columns titreentete">
 			<h1>

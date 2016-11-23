@@ -1,10 +1,10 @@
-
 <script src="public/js/vendor/jquery.js"></script>
 <script src="public/js/vendor/what-input.js"></script>
 <script src="public/js/vendor/foundation.js"></script>
 <script src="public/js/app.js"></script>
-</body>
 
+
+</div> <!-- Fin de la div conteneur (pour espace header/footer) -->
 <div class="row">
 	<div class="large-12 columns">
 		<footer class="footer">
@@ -15,7 +15,7 @@
 		</footer>
 	</div>
 </div>
-
+</body>
 </html>
 
 

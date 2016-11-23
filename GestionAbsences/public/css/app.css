@@ -20,7 +20,7 @@
 	font-weight: bold;
 }
 
-body {
+html, body {
 	/* TODO Changer la police */
 }
 
@@ -79,5 +79,22 @@ body {
 .alert-logo {
 	font-size: 20rem;
 	color: red;
+}
+
+/* Espace entre header et footer */
+.conteneur {
+	min-height: 100%;
+	margin-bottom: -175px; 
+	
+}
+
+.conteneur:after {
+  content: "";
+  display: block;
+}
+
+.footer, .conteneur:after {
+  /* .push must be the same height as footer */
+	height: 175px; 
 }
 
