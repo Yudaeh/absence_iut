@@ -32,9 +32,9 @@
          * @param Adresse $Adresse
          * @param string $Email_E
          */
-        public function __construct($INE, $Nom_E, $Prenom_E, $ID_Groupe, $tel,
-                                    $Adresse,
-                                    $Email_E) {
+        public function __construct($INE, $Nom_E=null, $Prenom_E=null, $ID_Groupe=null, $tel=null,
+                                    $Adresse=null,
+                                    $Email_E=null) {
             if (isset($INE)) {
                 $this->INE = $INE;
                 if (isset($Nom_E) && isset($Prenom_E) && isset($ID_Groupe) &&

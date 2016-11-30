@@ -4,6 +4,8 @@
     namespace GestionAbsences\Modele;
 
 
+    use GestionAbsences\Libs\BaseDeDonnees;
+
     class Personnel extends Modele {
         private static $DEFAULT_MDP = '0000';
 
@@ -31,7 +33,7 @@
          * @param $Prenom_P
          * @param $id_Type
          */
-        public function __construct($ID_P = null, $Nom_P = null,
+        public function __construct($ID_P, $Nom_P = null,
                                     $Prenom_P = null, $id_Type = null) {
             if (isset($ID_P)) {
                 if ($ID_P <= 0 && isset($Nom_P) && isset($Prenom_P) &&
@@ -40,7 +42,6 @@
                     $this->Nom_P = $Nom_P;
                     $this->Prenom_P = $Prenom_P;
                     $this->id_Type = new Type($id_Type);
-                    $this->sauvegarder();
                 } else {
                     $this->ID_P = $ID_P;
                     $this->charger();
@@ -60,6 +61,13 @@
             }
 
             $this->sauvergarderLogin();
+        }
+
+        /**
+         * @param int $ID_P
+         */
+        public function setIDP($ID_P) {
+            $this->ID_P = $ID_P;
         }
 
 
@@ -168,6 +176,35 @@
             return $this->ID_P;
         }
 
+        /**
+         * Recherche l'identifiant d'un prof, en fonction du nom et du prénom
+         * @return array contenant l'id du prof
+         */
+        public function chercherProf(){
+            $this->connexionBD();
+            $info = $this->bd->selectParams("Select ID_P From personnel Where Nom_P=:nom And Prenom_P=:prenom", array(
+                ":nom"=>$this->Nom_P,
+                ":prenom"=>$this->Prenom_P
+            ));
+            return $info;
+        }
+
+        /**
+         * Récupere tous les enseignants présent dans la BD
+         * Renvoie un tableau d'objet Personnel
+         */
+        public static function findAllProf(){
+
+            $bd=BaseDeDonnees::getInstance();
+            $info = $bd->selectSansParams("Select ID_P,Nom_P,Prenom_P From personnel Where id_Type=3");
+            $prof=array();
+            for ($i=0;$i<count($info);$i++){
+                $prof[]=new Personnel($info[$i]->ID_P,$info[$i]->Nom_P,$info[$i]->Prenom_P,3);
+            }
+
+            return $prof;
+        }
+
         public function sauvergarderLogin() {
             $this->connexionBD();
             if (isset($this->ID_P)) {
@@ -235,7 +272,7 @@ WHERE ID_P=:id_p", array(
             return "(".$this->getIDP().") :".$this->getNomP()." ".$this->getPrenomP().
                    " ". $this->getIdType()->getNomT();
         }
-        
+
         /**
          * Vérifie si un login avec son mot de passe existe
          * @param $loginTest Le login que l'on test
@@ -244,32 +281,31 @@ WHERE ID_P=:id_p", array(
          * existe, false sinon
          */
         public function loginExiste($loginTest, $pwdTest) {
-        	$this->connexionBD();
-        		$info =
-        		$this->bd->selectParams("SELECT Login, Pwd FROM personnel WHERE Pwd=:Password AND Login=:LOG",
-        				array(
-        						":LOG" => $loginTest,
-        						":Password" => $pwdTest
-        				));
-        
-        		return !empty($info) && $info[0]->Login == $loginTest && $info[0]->Pwd == $pwdTest;	
+            $this->connexionBD();
+            $info =
+                $this->bd->selectParams("SELECT Login, Pwd FROM personnel WHERE Pwd=:Password AND Login=:LOG",
+                                        array(
+                                            ":LOG" => $loginTest,
+                                            ":Password" => $pwdTest
+                                        ));
+
+            return !empty($info) && $info[0]->Login == $loginTest && $info[0]->Pwd == $pwdTest;
         }
-        
+
         /**
-         * Retourne le type (l'id) d'un utilisateur en fonction de 
-         * son login 
+         * Retourne le type (l'id) d'un utilisateur en fonction de
+         * son login
          * @param unknown $loginTest
          * @param unknown $pwdTest
          */
         public function getTypeFromLogin($loginTest) {
-        	$this->connexionBD();
-        	$info =
-        	$this->bd->selectParams("SELECT id_Type FROM personnel WHERE Login=:LOGIN",
-        			array(
-        					":LOGIN" => $loginTest,
-        			));
-        	
-			return $info[0]->id_Type;
+            $this->connexionBD();
+            $info =
+                $this->bd->selectParams("SELECT id_Type FROM personnel WHERE Login=:LOGIN",
+                                        array(
+                                            ":LOGIN" => $loginTest,
+                                        ));
+
+            return $info[0]->id_Type;
         }
-        
     }

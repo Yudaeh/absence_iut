@@ -42,7 +42,7 @@
                     $this->jour = $jour;
                     $this->mois = $mois;
                     $this->an = $an;
-                    $this->sauvegarder();
+
                 } else {
                     $this->charger();
                 }
@@ -136,6 +136,19 @@
             $this->an = $an;
         }
 
+
+
+        public function chercherDate(){
+            $this->connexionBD();
+            $info = $this->bd->selectParams("Select ID_D From date WHERE Heure_deb=:hd AND Heure_fin=:hf AND jour=:jour AND mois=:mois AND date.an=:an ", array(
+                ":hd" => $this->Heure_deb,
+                ":hf" => $this->Heure_fin,
+                ":jour" => $this->jour,
+                ":mois" => $this->mois,
+                ":an" => $this->an
+            ));
+            return $info;
+        }
 
         public function sauvegarder() {
             $this->connexionBD();
