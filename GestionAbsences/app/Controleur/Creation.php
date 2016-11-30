@@ -15,7 +15,7 @@
         /**
          * Méthode lançée pour accéder à la création de professeurs
          */
-        public function professeurs() {
+        public function professeur() {
         	require (VUES . 'creation/professeurs.php');
         }
         

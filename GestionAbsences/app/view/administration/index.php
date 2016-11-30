@@ -25,6 +25,8 @@
 	</div>
 </div>
 
+<br/>
+
 <?php 
 	require(FOOTER);
 ?>
