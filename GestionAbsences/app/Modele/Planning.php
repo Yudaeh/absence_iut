@@ -182,11 +182,11 @@
         }
 
         public function toString() {
-            return "(" . $this->getIdCours() . ") : " .
-                   $this->getIdMatiere()->toString() . " " .
-                   $this->getIdDate()->toString() . " " .
-                   $this->getIdGroupe()->toString() . " " .
-                   $this->getIdProf()->toString() . " " .
+            return "(" . $this->getIdCours() . ") : <br/>" .
+                   $this->getIdMatiere()->toString() . "<br/> " .
+                   $this->getIdDate()->toString() . "<br/> " .
+                   $this->getIdGroupe()->toString() . "<br/> " .
+                   $this->getIdProf()->toString() . "<br/> " .
                    $this->getIdSalle()->toString();
         }
     }

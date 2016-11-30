@@ -4,6 +4,8 @@
     namespace GestionAbsences\Modele;
 
 
+    use GestionAbsences\Libs\BaseDeDonnees;
+
     class Salle extends Modele {
 
         /** @var  int */
@@ -29,7 +31,7 @@
                     $this->Nom_S = $Nom_S;
                     $this->batiment = $batiment;
                     $this->num = $num;
-                    $this->sauvegarder();
+
                 } else {
                     $this->charger();
 
@@ -95,6 +97,23 @@
             $this->num = $num;
         }
 
+        public function chercherSalle(){
+            $this->connexionBD();
+            $info = $this->bd->selectParams("Select ID_S From salle Where Nom_S=:nom", array(
+                ":nom"=>$this->Nom_S
+            ));
+            return $info;
+        }
+
+        public static function findAll(){
+            $bd=BaseDeDonnees::getInstance();
+            $info = $bd->selectSansParams("Select ID_S,Nom_S,batiment,num From salle");
+            $salle=array();
+            for($i=0;$i<count($info);$i++){
+                $salle[]= new Salle($info[$i]->ID_S,$info[$i]->Nom_S,$info[$i]->batiment,$info[$i]->num);
+            }
+            return $salle;
+        }
         public function sauvegarder() {
             $this->connexionBD();
             if(isset($this->ID_S)){

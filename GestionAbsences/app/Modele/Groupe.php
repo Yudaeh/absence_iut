@@ -4,6 +4,8 @@
     namespace GestionAbsences\Modele;
 
 
+    use GestionAbsences\Libs\BaseDeDonnees;
+
     class Groupe extends Modele {
         /** @var  int */
         private $ID_G;
@@ -24,7 +26,7 @@
                 if(isset($Nom_G) && isset($ID_fil)){
                     $this->Nom_G = $Nom_G;
                     $this->ID_fil = new Filiere($ID_fil);
-                    $this->sauvegarder();
+
                 } else {
                     $this->charger();
                 }
@@ -75,7 +77,25 @@
             $this->ID_fil = $ID_fil;
         }
 
+        public function chercherGroupe(){
+            $this->connexionBD();
+            $info = $this->bd->selectParams("Select ID_G From groupe WHERE Nom_G=:nom", array(
+                ":nom"=>$this->Nom_G
+            ));
 
+            return $info;
+        }
+
+        public static function findAll(){
+            $bd=BaseDeDonnees::getInstance();
+            $info = $bd->selectSansParams("Select ID_G,Nom_G,ID_fil From groupe");
+            $groupes=array();
+            for($i=0;$i<count($info);$i++){
+                $groupes[]= new Groupe($info[$i]->ID_G,$info[$i]->Nom_G,$info[$i]->ID_fil);
+
+            }
+            return $groupes;
+        }
 
         public function sauvegarder() {
             $this->connexionBD();

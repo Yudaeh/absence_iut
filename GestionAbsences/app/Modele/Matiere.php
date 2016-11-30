@@ -4,6 +4,8 @@
     namespace GestionAbsences\Modele;
 
 
+    use GestionAbsences\Libs\BaseDeDonnees;
+
     class Matiere extends Modele {
 
         /** @var  int */
@@ -21,7 +23,7 @@
                 $this->ID_M = $ID_M;
                 if(isset($Nom_M)){
                     $this->Nom_M = $Nom_M;
-                    $this->sauvegarder();
+
                 } else {
                     $this->charger();
                 }
@@ -57,6 +59,24 @@
             $this->Nom_M = $Nom_M;
         }
 
+        public function chercherMatiere(){
+            $this->connexionBD();
+            $info = $this->bd->selectParams("SELECT ID_M From matiere WHere Nom_M=:nom", array(
+                ":nom"=>$this->Nom_M
+            ));
+            return $info;
+        }
+
+        public static function findAll(){
+            $bd=BaseDeDonnees::getInstance();
+            $info = $bd->selectSansParams("Select ID_M,Nom_M From matiere");
+            $matiere=array();
+            for($i=0;$i<count($info);$i++){
+                $matiere[]= new Matiere($info[$i]->ID_M,$info[$i]->Nom_M);
+
+            }
+            return $matiere;
+        }
 
         public function sauvegarder() {
             $this->connexionBD();
