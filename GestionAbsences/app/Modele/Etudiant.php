@@ -211,4 +211,15 @@
             return "(" . $this->getINE() . ") : " . $this->getNomE() . " " .
                    $this->getPrenomE() . " " . $this->getIDGroupe()->toString();
         }
-    }
+        
+        public function getAll() {
+        	$this->connexionBD();
+        	$info =
+        	$this->bd->selectParams("SELECT INE,Nom_E,Prenom_E,ID_Groupe,Tel_E,Adresse,Adresse_P,Email_E FROM etudiant",
+        			array(
+        			));
+        	
+			return $info;
+        }
+   
+}

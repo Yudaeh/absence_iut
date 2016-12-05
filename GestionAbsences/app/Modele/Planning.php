@@ -189,4 +189,13 @@
                    $this->getIdProf()->toString() . "<br/> " .
                    $this->getIdSalle()->toString();
         }
+        
+        public function getAll() {
+        	$this->connexionBD();
+        	$info =
+        	$this->bd->selectParams("SELECT id_cours,id_matiere,id_date,id_prof,id_groupe,id_salle FROM planning",
+        			array(
+        			));
+        	return $info;
+        }
     }
