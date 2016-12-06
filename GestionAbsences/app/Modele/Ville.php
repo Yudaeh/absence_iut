@@ -25,26 +25,21 @@
         public function __construct($ID_V = null, $Nom = null, $CP = null,
                                     $ID_Pays = null) {
             if (isset($ID_V)) {
-                if ($ID_V <= 0 && isset($Nom) && isset($CP) &&
+                if ( isset($Nom) && isset($CP) &&
                     isset($ID_Pays)
                 ) {
+                    $this->ID_V = $ID_V;
                     $this->Nom = $Nom;
                     $this->CP = $CP;
                     $this->ID_Pays = new Pays($ID_Pays);
-                    $this->sauvegarder();
+
 
                 } else {
                     $this->ID_V = $ID_V;
                     $this->charger();
 
-
                 }
 
-            } else {
-                $this->ID_V = " ";
-                $this->Nom = " ";
-                $this->CP = " ";
-                $this->ID_Pays = " ";
             }
 
         }
@@ -98,27 +93,52 @@
             $this->ID_Pays = $ID_Pays;
         }
 
+        /**
+         * Recherche si une ville existe, et si oui renvoie son id
+         */
+        public function recherche(){
+            $this->connexionBD();
+            if(isset($this->Nom)){
+
+                $id = $this->bd->selectParams("Select ID_V From ville Where Nom=:nom AND CP=:cp", array(
+                    ":nom"=>$this->Nom,
+                    ":cp"=>$this->CP
+                ));
+                if($id !=null){
+
+                    $this->ID_V=$id[0]->ID_V;
+                } else {
+
+                    $this->sauvegarder();
+                }
+
+            }
+
+        }
 
         public function sauvegarder() {
             $this->connexionBD();
             if (isset($this->ID_V)) {
-                var_dump($this->bd->actionParams("UPDATE ville SET Nom=:nom,CP=:cp,ID_Pays=:id WHERE ID_V=:id_v",
-                                                 array(
-                                                     ":nom" => $this->Nom,
-                                                     ":cp" => $this->CP,
-                                                     ":id" => $this->ID_Pays->getIDP(),
-                                                     ":id_v" => $this->ID_V
-                                                 )));
-            } else {
-                $this->bd->actionParams("INSERT INTO ville (Nom, CP, ID_Pays) VALUES (:nom,:cp,:pays)",
-                                        array(
-                                            ":nom" => $this->Nom,
-                                            ":cp" => $this->CP,
-                                            ":pays" => $this->ID_Pays->getIDP()
-                                        ));
-                $num =
-                    $this->bd->selectSansParams("SELECT MAX(ID_V) AS ID_V FROM ville");
-                $this->ID_V = $num[0]->ID_V;
+                if($this->ID_V == 0){
+                    $this->bd->actionParams("INSERT INTO ville (Nom, CP, ID_Pays) VALUES (:nom,:cp,:pays)",
+                                            array(
+                                                ":nom" => $this->Nom,
+                                                ":cp" => $this->CP,
+                                                ":pays" => $this->ID_Pays->getIDP()
+                                            ));
+                    $num =
+                        $this->bd->selectSansParams("SELECT MAX(ID_V) AS ID_V FROM ville");
+                    $this->ID_V = $num[0]->ID_V;
+                } else {
+                    $this->bd->actionParams("UPDATE ville SET Nom=:nom,CP=:cp,ID_Pays=:id WHERE ID_V=:id_v",
+                                            array(
+                                                ":nom" => $this->Nom,
+                                                ":cp" => $this->CP,
+                                                ":id" => $this->ID_Pays->getIDP(),
+                                                ":id_v" => $this->ID_V
+                                            ));
+                }
+
             }
         }
 

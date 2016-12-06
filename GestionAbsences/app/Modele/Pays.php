@@ -20,17 +20,12 @@
             if (isset($ID_P)) {
                 if ($ID_P <= 0 && isset($Nom_P)) {
                     $this->Nom_P=$Nom_P;
-                    $this->sauvegarder();
+
                 } else {
                     $this->ID_P = $ID_P;
                     $this->charger();
-
-
                 }
 
-            } else {
-                $this->ID_P = " ";
-                $this->Nom_P = " ";
             }
 
 
@@ -58,6 +53,25 @@
             return $this->ID_P;
         }
 
+        /**
+         * Recherche si un pays existe, si oui, modifie son ID par celui trouver , si non ajoute le Pays à la BD
+         */
+        public function recherche(){
+            $this->connexionBD();
+            if(isset($this->Nom_P)){
+                $id =  $this->bd->selectParams("Select ID_P From pays Where Nom_P=:nom", array(
+                    ":nom"=>$this->Nom_P
+                ));
+                if($id != null ){
+
+                    $this->ID_P=$id[0]->ID_P;
+                } else {
+                    #$this->sauvegarder();
+                }
+
+            }
+
+        }
 
         public function sauvegarder() {
             $this->connexionBD();
