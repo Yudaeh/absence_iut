@@ -25,7 +25,6 @@
                 if (isset($Nom_F) && isset($id_dep)) {
                     $this->Nom_F = $Nom_F;
                     $this->id_dep = new Departement($id_dep);
-                    $this->sauvegarder();
                 } else {
                     $this->charger();
                 }
@@ -78,14 +77,16 @@
 
         public function sauvegarder() {
             $this->connexionBD();
+
             if (isset($this->ID_F)) {
+            	
                 if ($this->ID_F == 0) {
+                	echo "lol";
                     $this->bd->actionParams("INSERT INTO filiere(Nom_F, Id_dep) VALUES (:nom,:id) ",
                                             array(
                                                 ":nom" => $this->Nom_F,
                                                 ":id" => $this->id_dep->getIDD()
                                             ));
-
                     $num = $this->bd->selectSansParams("SELECT MAX(ID_F) as ID_F FROM filiere");
                     $this->ID_F=$num[0]->ID_F;
                 } else {
@@ -96,6 +97,16 @@
                     ));
                 }
             }
+        }
+        
+        public function getAll() {
+        	$this->connexionBD();
+        	$info =
+        	$this->bd->selectParams("SELECT ID_F,Nom_F,ID_Dep FROM filiere",
+        			array(
+        			));
+        	
+        	return $info;
         }
 
         public function charger() {

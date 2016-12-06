@@ -3,7 +3,6 @@
 
     namespace GestionAbsences\Modele;
 
-
     use GestionAbsences\Libs\BaseDeDonnees;
 
     class Groupe extends Modele {

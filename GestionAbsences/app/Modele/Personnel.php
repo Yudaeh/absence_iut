@@ -1,9 +1,6 @@
 <?php
-
-
     namespace GestionAbsences\Modele;
-
-
+    
     use GestionAbsences\Libs\BaseDeDonnees;
 
     class Personnel extends Modele {
@@ -36,9 +33,10 @@
         public function __construct($ID_P, $Nom_P = null,
                                     $Prenom_P = null, $id_Type = null) {
             if (isset($ID_P)) {
-                if ($ID_P <= 0 && isset($Nom_P) && isset($Prenom_P) &&
+                if ( isset($Nom_P) && isset($Prenom_P) &&
                     isset($id_Type)
                 ) {
+                	$this->ID_P = $ID_P;
                     $this->Nom_P = $Nom_P;
                     $this->Prenom_P = $Prenom_P;
                     $this->id_Type = new Type($id_Type);
@@ -48,9 +46,9 @@
                 }
             }
 
-
         }
-
+       
+        
 
         public function createLogin($login, $pwd) {
             $this->setLogin($login);
@@ -211,33 +209,38 @@
                 $this->bd->actionParams("UPDATE personnel SET Login=:login,Pwd=:pwd WHERE ID_P=:id",
                                         array(
                                             ":login" => $this->Login,
-                                            ":pws" => $this->PWD,
+                                            ":pwd" => $this->PWD,
                                             ":id" => $this->ID_P
                                         ));
             }
-        }
-
+        }    
+	         
         public function sauvegarder() {
             $this->connexionBD();
+            
             if (isset($this->ID_P)) {
-                $this->bd->actionParams("UPDATE personnel SET Nom_P=:nom,Prenom_P=:prenom,id_Type=:id 
+            	if($this->ID_P==0){
+            		echo '<br/>'.$this->Nom_P.'<br/>';
+            		$this->bd->actionParams("INSERT INTO personnel(Nom_P,Prenom_P,id_Type) VALUES (:nom,:prenom,:id)",
+            				array(
+            						":nom" => $this->Nom_P,
+            						":prenom" => $this->Prenom_P,
+            						":id" => $this->id_Type->getIDT()
+            				));
+            		$num = $this->bd->selectSansParams("SELECT MAX(ID_P) AS ID_P FROM personnel");
+            		$this->ID_P = $num[0]->ID_P;
+            	} else {
+            		$this->bd->actionParams("UPDATE personnel SET Nom_P=:nom,Prenom_P=:prenom,id_Type=:id
 WHERE ID_P=:id_p", array(
-                    ":nom" => $this->Nom_P,
-                    ":prenom" => $this->Prenom_P,
-                    ":id" => $this->id_Type->getIDT(),
-                    ":id_p" => $this->ID_P
-                ));
-            } else {
-                $this->bd->actionParams("INSERT INTO personnel(Nom_P,Prenom_P,id_Type) VALUES (:nom,:prenom,:id)",
-                                        array(
-                                            ":nom" => $this->Nom_P,
-                                            ":prenom" => $this->Prenom_P,
-                                            ":id" => $this->id_Type->getIDT(),
-                                        ));
-                $num =
-                    $this->bd->selectSansParams("SELECT MAX(ID_P) AS ID_P FROM personnel");
-                $this->ID_P = $num[0]->ID_P;
+            				":nom" => $this->Nom_P,
+            				":prenom" => $this->Prenom_P,
+            				":id" => $this->id_Type->getIDT(),
+            				":id_p" => $this->ID_P
+            		));
+            	}
+                
             }
+            
         }
 
         public function charger() {

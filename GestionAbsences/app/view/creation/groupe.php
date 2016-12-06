@@ -3,19 +3,19 @@
 	
 	# Gestion d'accés à la page pour les administrateurs et administratifs
 	use GestionAbsences\Controleur\Connexion;
-	use GestionAbsences\Modele\Departement;
+	use GestionAbsences\Modele\Filiere;
 	if (!Connexion::estConnecteAdministrateur() && !Connexion::estConnecteAdministratif()) {
 		header('Location: /projects/absence_iut/GestionAbsences/Connexion');
 	}
 ?>
 
 <!-- Formulaire création d'un département -->
-<form method="post" action="Creation/newFiliere" class="formulaire_creation">
+<form method="post" action="Creation/newGroupe" class="formulaire_creation">
 	<div class="row">
 		<div class="large-6 large-centered columns">
-		<center><h3>Créer une filière :</h3></center>
+		<center><h3>Créer un groupe :</h3></center>
       		<label>Nom :
-        		<input type="text" placeholder="Nom de la filière" name="nomFiliere"/>
+        		<input type="text" placeholder="Nom du groupe" name="nomGroupe"/>
       		</label>
       	</div>
 	</div>
@@ -23,7 +23,7 @@
 	<div class="row">
 		<div class="large-6 large-centered columns">
       		<label>Description :
-        		<textarea placeholder="Description de la filière..."></textarea>
+        		<textarea placeholder="Description du groupe..."></textarea>
       		</label>
       	</div>
 	</div>
@@ -31,12 +31,12 @@
 	<div class="row">
 		<div class="large-6 large-centered columns">
       		<label>Le département :
-        		<select name="departement">
+        		<select name="filiere">
         			<?php 
-        				$departement = new Departement(0);
-        				$infoDepartement = $departement->getAll();   				
-        				foreach($infoDepartement as $row) {
-        					echo '<option value="'.$row->ID_D.'">'.$row->NOM_D.'</option>';
+        				$filiere = new Filiere(0);
+        				$infoFiliere = $filiere->getAll();   				
+        				foreach($infoFiliere as $row) {
+        					echo '<option value="'.$row->ID_F.'">'.$row->Nom_F.'</option>';
         				}    			
         			?>
        			</select>
@@ -68,3 +68,4 @@
 <?php 
 	require(FOOTER);
 ?>
+

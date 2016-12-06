@@ -21,13 +21,10 @@
                 $this->ID_D = $ID_D;
                 if(isset($Nom_D)){
                     $this->Nom_D = $Nom_D;
-                    $this->sauvegarder();
                 } else {
                     $this->charger();
                 }
-
             }
-
         }
 
         /**
@@ -77,6 +74,16 @@
                     ));
                 }
             }
+        }
+        
+        public function getAll() {
+        	$this->connexionBD();
+        	$info =
+        	$this->bd->selectParams("SELECT ID_D,NOM_D,Descri_D FROM departement",
+        			array(
+        			));
+        	 
+        	return $info;
         }
 
         public function charger() {
