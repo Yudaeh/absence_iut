@@ -3,7 +3,6 @@
 
     namespace GestionAbsences\Controleur;
 
-
     use GestionAbsences\Core\Controleur;
     use GestionAbsences\Modele\Adresse;
     use GestionAbsences\Modele\Etudiant;
@@ -50,14 +49,21 @@
          * Traitement du formulaire d'importation
          */
         public function traitementCSV() {
-        	if(isset($_FILES['fichierCSV'])) {
-        		$fichier = basename($_FILES['fichierCSV']['name']);
-        		echo $fichier;
+        	if (strlen($_FILES['fichierCSV']['name'])!=0) {
+        		$fichier = $_FILES['fichierCSV']['name'];
+        		$groupe = $_POST['groupe'];
+        		
+        		CSV::importEtudiant($fichier, $groupe);
+        		
+        		unset($_POST);
+        		unset($_FILES);
+        		
+        		$_SESSION['valid'] = "1";
+        		header('Location: /projects/absence_iut/GestionAbsences/Importation');
         	} else {
-        		echo "nothing";
-        		// Gérer une erreur
+        		$_SESSION['error'] = "1";
+        		header('Location: /projects/absence_iut/GestionAbsences/Importation');
         	}
-        	
-        	
+	
         }
     }
