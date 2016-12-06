@@ -95,6 +95,16 @@
             }
             return $groupes;
         }
+        
+        public static function getAll() {
+        	$bd=BaseDeDonnees::getInstance();
+        	$info =
+        	$bd->selectParams("SELECT ID_G,Nom_G,ID_fil FROM groupe",
+        			array(
+        			));
+        	 
+        	return $info;
+        }
 
         public function sauvegarder() {
             $this->connexionBD();

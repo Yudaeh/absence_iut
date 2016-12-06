@@ -45,4 +45,19 @@
             fclose($fich);
 
         }
+        
+        /**
+         * Traitement du formulaire d'importation
+         */
+        public function traitementCSV() {
+        	if(isset($_FILES['fichierCSV'])) {
+        		$fichier = basename($_FILES['fichierCSV']['name']);
+        		echo $fichier;
+        	} else {
+        		echo "nothing";
+        		// Gérer une erreur
+        	}
+        	
+        	
+        }
     }
